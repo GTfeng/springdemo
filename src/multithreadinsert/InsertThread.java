@@ -15,7 +15,7 @@ public class InsertThread extends Thread {
     private static final String name = "root";
     private static final String pwd = "123456";
     Connection conn = null;
-    List<Integer> time = new ArrayList();
+    static List<Integer> time = new ArrayList();
 
     int perInsert = 1000;
     int insertTimes = 100;
@@ -104,11 +104,12 @@ public class InsertThread extends Thread {
         index = execute_times.getAndAdd(1);
         if(index>18){
             System.out.println("全部sql操作执行完毕");
+            writeExcel();
         }
 
     }
 
-    public void writeExcel(){
+    public static void writeExcel(){
         int longest = 0;
         for(int i=0;i<time.size();i++){
             if(time.get(i)>longest){
@@ -116,6 +117,7 @@ public class InsertThread extends Thread {
             }
         }
         System.out.println(longest);
+        WriteExcel.WriteExcel(longest,1);
     }
 
 }
