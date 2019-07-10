@@ -1,10 +1,8 @@
 package multithreadinsert;
 
-import java.util.concurrent.CountDownLatch;
-
 public class MyTest {
 
-    static CountDownLatch cdl=new CountDownLatch(10);
+//    static CountDownLatch cdl=new CountDownLatch(10);
 
     public static int threads = 20;
 
@@ -14,7 +12,7 @@ public class MyTest {
         }
 
 
-        InsertThread insertThread = new InsertThread();
-        insertThread.writeExcel();
+//        InsertThread insertThread = new InsertThread();
+//        insertThread.writeExcel();
     }
 }

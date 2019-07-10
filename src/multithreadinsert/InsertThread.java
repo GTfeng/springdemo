@@ -10,8 +10,8 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class InsertThread extends Thread {
-        private static final String url = "jdbc:mysql://localhost/test";
-//    private static final String url = "jdbc:mysql://localhost/test_teacher";
+    private static final String url = "jdbc:mysql://localhost/test";
+    //    private static final String url = "jdbc:mysql://localhost/test_teacher";
     private static final String name = "root";
     private static final String pwd = "123456";
     Connection conn = null;
@@ -19,11 +19,9 @@ public class InsertThread extends Thread {
 
     int perInsert = 1000;
     int insertTimes = 100;
-//    public static int execute_times = 0;
+    //    public static int execute_times = 0;
     public static AtomicInteger execute_times = new AtomicInteger(0);
     int index = 0;
-
-
 
 
     public void run() {
@@ -38,8 +36,6 @@ public class InsertThread extends Thread {
 
         Long begin = new Date().getTime();
         // sql前缀
-
-
 
 
 //        String prefix = "INSERT INTO test_teacher (t_name,t_password,sex,description,pic_url,school_name,regist_date,remark) VALUES ";
@@ -80,8 +76,8 @@ public class InsertThread extends Thread {
         // 结束时间
         Long end = new Date().getTime();
         // 耗时
-        System.out.println(perInsert*insertTimes+"万条数据插入花费时间 : " + (end - begin) / 1000 + " s" + "  插入完成");
-        int useTime = (int) ((end-begin)/1000);
+        System.out.println(perInsert * insertTimes + "万条数据插入花费时间 : " + (end - begin) / 1000 + " s" + "  插入完成");
+        int useTime = (int) ((end - begin) / 1000);
         time.add(useTime);
 
 
@@ -102,22 +98,22 @@ public class InsertThread extends Thread {
 //            System.out.println("全部sql操作执行完毕");
 //        }
         index = execute_times.getAndAdd(1);
-        if(index>18){
+        if (index > 18) {
             System.out.println("全部sql操作执行完毕");
-            writeExcel();
+            writeExcel(perInsert, insertTimes);
         }
 
     }
 
-    public static void writeExcel(){
+    public static void writeExcel(int perInsert, int insertTimes) {
         int longest = 0;
-        for(int i=0;i<time.size();i++){
-            if(time.get(i)>longest){
+        for (int i = 0; i < time.size(); i++) {
+            if (time.get(i) > longest) {
                 longest = time.get(i);
             }
         }
         System.out.println(longest);
-        WriteExcel.WriteExcel(longest,1);
+        WriteExcel.WriteExcel(longest, perInsert * insertTimes);
     }
 
 }
