@@ -97,11 +97,13 @@ public class InsertThread extends Thread {
 //        if(execute_times.get()>18){
 //            System.out.println("全部sql操作执行完毕");
 //        }
-        index = execute_times.getAndAdd(1);
-        if (index > 18) {
-            System.out.println("全部sql操作执行完毕");
-            writeExcel(perInsert, insertTimes);
-        }
+
+
+//        index = execute_times.getAndAdd(1);
+//        if (index > 18) {
+//            System.out.println("全部sql操作执行完毕");
+//            writeExcel(perInsert, insertTimes);
+//        }
 
     }
 
